@@ -282,7 +282,6 @@ Planned and ongoing improvements include:
 - Better memory
 - Improved responses
 - Cleaner chat interface
-- Better model selection
 - More useful assistant behavior
 
 ---
