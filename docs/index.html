@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050505">
+<meta name="description" content="PickleAI — a personal AI assistant that remembers, learns, and works with you.">
 <title>PickleAI — The AI that gets you.</title>
 
 <style>
@@ -36,29 +37,21 @@ a {
     color: #000;
 }
 
-/* =========================
-   NAV
-========================= */
-
 nav {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    right: 0;
     height: 58px;
-    z-index: 1000;
-
+    z-index: 100;
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    padding: 0 32px;
-
-    background: rgba(5,5,5,.68);
+    padding: 0 28px;
+    background: rgba(5,5,5,.72);
+    border-bottom: 1px solid rgba(255,255,255,.06);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
-
-    border-bottom: 1px solid rgba(255,255,255,.06);
 }
 
 .logo {
@@ -70,8 +63,8 @@ nav {
 .nav-links {
     display: flex;
     gap: 28px;
-    color: #aaa;
-    font-size: 14px;
+    color: #a7a7ad;
+    font-size: 13px;
 }
 
 .nav-links a {
@@ -79,575 +72,393 @@ nav {
 }
 
 .nav-links a:hover {
-    color: white;
+    color: #fff;
 }
 
 .nav-button {
-    background: #fff;
-    color: #000;
     padding: 8px 15px;
     border-radius: 999px;
-    font-size: 13px;
+    background: #fff;
+    color: #000;
     font-weight: 600;
+    font-size: 13px;
 }
-
-/* =========================
-   HERO
-========================= */
 
 .hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    position: relative;
-    overflow: hidden;
-
     text-align: center;
-    padding: 120px 24px 80px;
+    padding: 120px 24px 70px;
+    position: relative;
 }
 
-.hero-glow {
+.hero::before {
+    content: "";
     position: absolute;
-    width: 700px;
-    height: 700px;
+    width: 800px;
+    height: 800px;
     border-radius: 50%;
-
     background:
-        radial-gradient(
-            circle,
-            rgba(130,100,255,.20) 0%,
-            rgba(60,100,255,.08) 35%,
-            transparent 70%
-        );
-
-    filter: blur(40px);
-    pointer-events: none;
+        radial-gradient(circle at 40% 40%,
+        rgba(105,75,255,.18),
+        rgba(30,110,255,.07) 35%,
+        transparent 68%);
+    filter: blur(12px);
 }
 
 .hero-content {
     position: relative;
-    z-index: 2;
-    max-width: 1100px;
+    max-width: 1200px;
 }
 
 .eyebrow {
-    color: #999;
-    font-size: 15px;
-    margin-bottom: 25px;
-    letter-spacing: .3px;
+    display: inline-flex;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.035);
+    color: #aaaab0;
+    font-size: 12px;
+    margin-bottom: 28px;
 }
 
 .hero h1 {
     font-size: clamp(58px, 9vw, 132px);
-    line-height: .92;
+    line-height: .88;
     letter-spacing: -7px;
-    font-weight: 700;
-
-    background: linear-gradient(
-        180deg,
-        #ffffff 0%,
-        #bcbcbc 60%,
-        #777 100%
-    );
-
+    background: linear-gradient(180deg, #fff 5%, #fff 40%, #77777d 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
 }
 
 .hero p {
-    max-width: 700px;
-    margin: 38px auto 0;
-
-    color: #999;
-    font-size: clamp(20px, 2.4vw, 30px);
-    line-height: 1.35;
-    letter-spacing: -.7px;
+    margin: 35px auto 0;
+    max-width: 650px;
+    color: #99999f;
+    font-size: clamp(17px, 2vw, 22px);
+    line-height: 1.5;
 }
 
-.hero-actions {
-    margin-top: 42px;
+.buttons {
     display: flex;
     justify-content: center;
-    gap: 14px;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 36px;
+}
+
+.button {
+    padding: 13px 21px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: transform .25s ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
 }
 
 .primary {
-    background: white;
-    color: black;
-    padding: 14px 24px;
-    border-radius: 999px;
-    font-weight: 600;
+    background: #fff;
+    color: #000;
 }
 
 .secondary {
-    border: 1px solid #333;
-    color: white;
-    padding: 14px 24px;
-    border-radius: 999px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.10);
 }
 
-.scroll-hint {
+.scroll {
     position: absolute;
     bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
+    color: #626267;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
 
-    color: #555;
+.section {
+    padding: 160px 7vw;
+}
+
+.inner {
+    max-width: 1250px;
+    margin: auto;
+}
+
+.kicker {
+    color: #6e6e74;
     font-size: 12px;
-    letter-spacing: 1px;
-}
-
-/* =========================
-   INTRO
-========================= */
-
-.intro {
-    min-height: 80vh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 120px 24px;
-}
-
-.intro-inner {
-    max-width: 1100px;
-}
-
-.intro h2 {
-    font-size: clamp(45px, 7vw, 92px);
-    line-height: .98;
-    letter-spacing: -5px;
-}
-
-.intro h2 span {
-    color: #555;
-}
-
-/* =========================
-   SCROLL FEATURES
-========================= */
-
-.feature-section {
-    position: relative;
-    min-height: 260vh;
-}
-
-.feature-sticky {
-    position: sticky;
-    top: 0;
-
-    height: 100vh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    overflow: hidden;
-}
-
-.feature-stage {
-    width: min(1200px, 92vw);
-    position: relative;
-}
-
-.feature-copy {
-    max-width: 620px;
-    position: relative;
-    z-index: 5;
-}
-
-.feature-number {
-    color: #555;
-    font-size: 14px;
-    margin-bottom: 20px;
-}
-
-.feature-copy h2 {
-    font-size: clamp(48px, 7vw, 100px);
-    line-height: .95;
-    letter-spacing: -5px;
-}
-
-.feature-copy p {
-    color: #888;
-    font-size: 21px;
-    line-height: 1.5;
-    margin-top: 30px;
-    max-width: 560px;
-}
-
-/* cards */
-
-.feature-cards {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-
-    width: 420px;
-    height: 520px;
-}
-
-.card {
-    position: absolute;
-
-    width: 100%;
-    height: 100%;
-
-    border-radius: 34px;
-
-    padding: 34px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.12),
-            rgba(255,255,255,.035)
-        );
-
-    border: 1px solid rgba(255,255,255,.12);
-
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-
-    box-shadow:
-        0 40px 100px rgba(0,0,0,.5);
-
-    opacity: 0;
-    transform: translateY(120px) scale(.88);
-
-    transition:
-        transform 1s cubic-bezier(.2,.8,.2,1),
-        opacity 1s ease;
-}
-
-.card.active {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-}
-
-.card:nth-child(2) {
-    transform: translateY(150px) scale(.82);
-}
-
-.card:nth-child(3) {
-    transform: translateY(180px) scale(.76);
-}
-
-.card.active:nth-child(2) {
-    transform: translate(35px, 35px) scale(.92);
-}
-
-.card.active:nth-child(3) {
-    transform: translate(70px, 70px) scale(.84);
-}
-
-.card-icon {
-    width: 54px;
-    height: 54px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 16px;
-
-    background: rgba(255,255,255,.08);
-
-    font-size: 22px;
-    margin-bottom: 120px;
-}
-
-.card h3 {
-    font-size: 32px;
-    letter-spacing: -1.5px;
-}
-
-.card p {
-    color: #888;
-    margin-top: 12px;
-    line-height: 1.5;
-}
-
-/* =========================
-   FEATURE 2
-========================= */
-
-.feature-section.light {
-    background: #f5f5f7;
-    color: #050505;
-}
-
-.light .feature-copy p {
-    color: #666;
-}
-
-.light .feature-number {
-    color: #999;
-}
-
-.light .card {
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.8),
-            rgba(230,230,235,.75)
-        );
-
-    border-color: rgba(0,0,0,.08);
-
-    box-shadow: 0 40px 100px rgba(0,0,0,.15);
-}
-
-.light .card p {
-    color: #666;
-}
-
-/* =========================
-   MEMORY VISUAL
-========================= */
-
-.memory-section {
-    min-height: 200vh;
-    position: relative;
-}
-
-.memory-sticky {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    overflow: hidden;
-}
-
-.memory-center {
-    width: min(900px, 90vw);
-    text-align: center;
-}
-
-.memory-center h2 {
-    font-size: clamp(55px, 8vw, 115px);
-    letter-spacing: -6px;
-    line-height: .92;
-}
-
-.memory-center p {
-    margin: 30px auto 0;
-    color: #777;
-    max-width: 650px;
-    font-size: 22px;
-    line-height: 1.5;
-}
-
-.memory-orbit {
-    position: absolute;
-    width: 700px;
-    height: 700px;
-
-    border: 1px solid rgba(255,255,255,.06);
-    border-radius: 50%;
-
-    animation: rotate 18s linear infinite;
-}
-
-.memory-orbit::before,
-.memory-orbit::after {
-    content: "";
-    position: absolute;
-
-    width: 12px;
-    height: 12px;
-
-    border-radius: 50%;
-    background: white;
-
-    box-shadow: 0 0 30px white;
-}
-
-.memory-orbit::before {
-    top: 50px;
-    left: 100px;
-}
-
-.memory-orbit::after {
-    right: 80px;
-    bottom: 100px;
-}
-
-@keyframes rotate {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/* =========================
-   PRIVACY
-========================= */
-
-.privacy {
-    min-height: 100vh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-
-    padding: 120px 24px;
-
-    background:
-        radial-gradient(
-            circle at center,
-            #171717 0%,
-            #050505 55%
-        );
-}
-
-.privacy-inner {
-    max-width: 1000px;
-}
-
-.privacy-label {
-    color: #777;
-    font-size: 15px;
+    letter-spacing: 2px;
     margin-bottom: 25px;
 }
 
-.privacy h2 {
-    font-size: clamp(55px, 8vw, 115px);
+.big {
+    font-size: clamp(44px, 6.5vw, 88px);
+    line-height: .96;
+    letter-spacing: -4px;
+    font-weight: 650;
+}
+
+.big span {
+    color: #626267;
+}
+
+.copy {
+    max-width: 680px;
+    color: #929297;
+    font-size: 18px;
+    line-height: 1.7;
+    margin-top: 30px;
+}
+
+.feature {
+    min-height: 650px;
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.feature-info {
+    position: sticky;
+    top: 140px;
+    align-self: start;
+}
+
+.feature-number {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #66666b;
+    margin-bottom: 25px;
+}
+
+.feature-title {
+    font-size: clamp(45px, 5vw, 70px);
+    line-height: .94;
+    letter-spacing: -4px;
+}
+
+.feature-text {
+    margin-top: 25px;
+    color: #929297;
+    line-height: 1.7;
+    font-size: 16px;
+}
+
+.cards {
+    display: grid;
+    gap: 14px;
+}
+
+.card {
+    min-height: 210px;
+    padding: 32px;
+    border-radius: 25px;
+    border: 1px solid rgba(255,255,255,.09);
+    background: linear-gradient(
+        145deg,
+        rgba(255,255,255,.06),
+        rgba(255,255,255,.018)
+    );
+    position: relative;
+    overflow: hidden;
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    top: -130px;
+    right: -90px;
+    background: radial-gradient(circle, rgba(100,80,255,.12), transparent 70%);
+}
+
+.card-num {
+    color: #66666b;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.card h3 {
+    margin-top: 42px;
+    font-size: 26px;
+    letter-spacing: -1px;
+}
+
+.card p {
+    color: #88888d;
+    margin-top: 10px;
+    line-height: 1.6;
+    max-width: 500px;
+}
+
+.light {
+    background: #f3f3f3;
+    color: #080808;
+}
+
+.light .kicker {
+    color: #777;
+}
+
+.light .big span {
+    color: #aaa;
+}
+
+.light .copy {
+    color: #666;
+}
+
+.pipeline {
+    margin-top: 75px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid rgba(0,0,0,.13);
+    border-bottom: 1px solid rgba(0,0,0,.13);
+}
+
+.pipeline-item {
+    padding: 32px 24px;
+    border-right: 1px solid rgba(0,0,0,.13);
+}
+
+.pipeline-item:last-child {
+    border-right: 0;
+}
+
+.pipeline-number {
+    color: #888;
+    font-size: 11px;
+}
+
+.pipeline-item h3 {
+    margin-top: 45px;
+    font-size: 24px;
+}
+
+.pipeline-item p {
+    color: #666;
+    margin-top: 12px;
+    line-height: 1.55;
+    font-size: 14px;
+}
+
+.privacy-grid {
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.privacy-card {
+    min-height: 270px;
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 25px;
+    padding: 32px;
+    background: rgba(255,255,255,.03);
+}
+
+.privacy-card h3 {
+    margin-top: 70px;
+    font-size: 25px;
+}
+
+.privacy-card p {
+    margin-top: 12px;
+    color: #85858a;
+    line-height: 1.6;
+}
+
+.cta {
+    text-align: center;
+    padding: 180px 24px;
+}
+
+.cta h2 {
+    font-size: clamp(50px, 8vw, 110px);
     line-height: .92;
     letter-spacing: -6px;
 }
 
-.privacy h2 span {
-    color: #555;
+.cta p {
+    max-width: 600px;
+    margin: 28px auto 35px;
+    color: #8b8b90;
+    font-size: 18px;
+    line-height: 1.6;
 }
-
-.privacy p {
-    max-width: 650px;
-    margin: 35px auto 0;
-
-    color: #888;
-    font-size: 21px;
-    line-height: 1.5;
-}
-
-/* =========================
-   FINAL CTA
-========================= */
-
-.final {
-    min-height: 80vh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-
-    padding: 100px 24px;
-}
-
-.final h2 {
-    font-size: clamp(55px, 8vw, 110px);
-    line-height: .9;
-    letter-spacing: -6px;
-}
-
-.final p {
-    margin-top: 30px;
-    color: #777;
-    font-size: 20px;
-}
-
-/* =========================
-   FOOTER
-========================= */
 
 footer {
-    padding: 40px 30px;
-
-    border-top: 1px solid #151515;
-
-    color: #555;
-    font-size: 13px;
-
+    padding: 30px 7vw;
+    border-top: 1px solid rgba(255,255,255,.07);
     display: flex;
     justify-content: space-between;
+    color: #66666b;
+    font-size: 12px;
 }
 
-/* =========================
-   MOBILE
-========================= */
+footer strong {
+    color: #aaa;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .8s ease, transform .8s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 @media (max-width: 850px) {
+    .nav-links {
+        display: none;
+    }
 
     nav {
         padding: 0 18px;
-    }
-
-    .nav-links {
-        display: none;
     }
 
     .hero h1 {
         letter-spacing: -4px;
     }
 
-    .feature-section {
-        min-height: 220vh;
+    .section {
+        padding: 110px 22px;
     }
 
-    .feature-stage {
-        width: 90vw;
+    .feature {
+        grid-template-columns: 1fr;
+        gap: 50px;
     }
 
-    .feature-copy {
-        max-width: 100%;
+    .feature-info {
+        position: static;
     }
 
-    .feature-copy h2 {
-        font-size: 54px;
+    .pipeline,
+    .privacy-grid {
+        grid-template-columns: 1fr;
     }
 
-    .feature-cards {
-        position: relative;
-        right: auto;
-        top: auto;
-        transform: none;
-
-        margin: 55px auto 0;
-
-        width: min(380px, 90vw);
-        height: 400px;
+    .pipeline-item {
+        border-right: 0;
+        border-bottom: 1px solid rgba(0,0,0,.13);
     }
 
-    .feature-sticky {
-        height: 100vh;
-        align-items: flex-start;
-        padding-top: 100px;
+    .pipeline-item:last-child {
+        border-bottom: 0;
     }
 
-    .card.active:nth-child(2) {
-        transform: translate(15px, 25px) scale(.92);
-    }
-
-    .card.active:nth-child(3) {
-        transform: translate(30px, 50px) scale(.84);
-    }
-
-    .memory-orbit {
-        width: 450px;
-        height: 450px;
+    .cta h2 {
+        letter-spacing: -3px;
     }
 
     footer {
@@ -656,12 +467,7 @@ footer {
     }
 }
 
-/* =========================
-   REDUCED MOTION
-========================= */
-
 @media (prefers-reduced-motion: reduce) {
-
     html {
         scroll-behavior: auto;
     }
@@ -669,9 +475,12 @@ footer {
     *,
     *::before,
     *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: .01ms !important;
+        transition: none !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
     }
 }
 </style>
@@ -679,32 +488,26 @@ footer {
 
 <body>
 
-<!-- NAV -->
-
 <nav>
-    <a href="#" class="logo">PickleAI</a>
+    <a class="logo" href="https://pickleforge-labs.github.io/">
+        PickleAI
+    </a>
 
     <div class="nav-links">
-        <a href="#features">Features</a>
         <a href="#memory">Memory</a>
+        <a href="#action">Action</a>
+        <a href="#local">Local</a>
         <a href="#privacy">Privacy</a>
     </div>
 
-    <a href="#start" class="nav-button">Get started</a>
+    <a class="nav-button" href="https://github.com/PickleForge-Labs/PickleAI">
+        GitHub
+    </a>
 </nav>
 
-
-<!-- HERO -->
-
-<section class="hero">
-
-    <div class="hero-glow"></div>
-
-    <div class="hero-content">
-
-        <div class="eyebrow">
-            A personal AI assistant
-        </div>
+<header class="hero">
+    <div class="hero-content reveal">
+        <div class="eyebrow">A personal AI assistant</div>
 
         <h1>
             Meet the AI<br>
@@ -716,125 +519,359 @@ footer {
             and works with you.
         </p>
 
-        <div class="hero-actions">
-            <a class="primary" href="#start">
-                Get started
-            </a>
-
-            <a class="secondary" href="#features">
+        <div class="buttons">
+            <a class="button primary" href="#memory">
                 Explore PickleAI
             </a>
+
+            <a class="button secondary"
+               href="https://github.com/PickleForge-Labs/PickleAI">
+                View on GitHub
+            </a>
+        </div>
+    </div>
+
+    <div class="scroll">SCROLL TO EXPLORE</div>
+</header>
+
+<section class="section">
+    <div class="inner">
+        <div class="reveal">
+            <div class="kicker">01 — THE IDEA</div>
+
+            <div class="big">
+                Not just another chatbot.<br>
+                <span>A companion for everything you do.</span>
+            </div>
+
+            <p class="copy">
+                PickleAI is designed around the idea that an assistant
+                should understand more than the message currently on
+                the screen. It should remember useful context, work
+                with your computer, and help turn ideas into actions.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="memory">
+    <div class="inner feature">
+
+        <div class="feature-info reveal">
+            <div class="feature-number">02 — MEMORY</div>
+
+            <div class="feature-title">
+                It remembers<br>
+                what matters.
+            </div>
+
+            <p class="feature-text">
+                Your projects, ideas, preferences, and conversations
+                can become part of a continuous experience instead
+                of disappearing every time a chat ends.
+            </p>
         </div>
 
-    </div>
+        <div class="cards">
 
-    <div class="scroll-hint">
-        SCROLL TO EXPLORE
-    </div>
-
-</section>
-
-
-<!-- INTRO -->
-
-<section class="intro">
-
-    <div class="intro-inner">
-
-        <h2>
-            Not just another chatbot.
-            <span>A companion for everything you do.</span>
-        </h2>
-
-    </div>
-
-</section>
-
-
-<!-- FEATURE 1 -->
-
-<section class="feature-section" id="features">
-
-    <div class="feature-sticky">
-
-        <div class="feature-stage">
-
-            <div class="feature-copy">
-
-                <div class="feature-number">
-                    01 — MEMORY
-                </div>
-
-                <h2>
-                    It remembers<br>
-                    what matters.
-                </h2>
-
+            <div class="card reveal">
+                <div class="card-num">01</div>
+                <h3>Context</h3>
                 <p>
-                    Your projects, ideas, preferences, and
-                    conversations can become part of a
-                    continuous context instead of disappearing
-                    every time you start a new chat.
+                    PickleAI can understand the context behind
+                    conversations instead of treating every message
+                    as completely separate.
                 </p>
-
             </div>
 
-            <div class="feature-cards">
+            <div class="card reveal">
+                <div class="card-num">02</div>
+                <h3>Memory</h3>
+                <p>
+                    Important information can remain available when
+                    you return later.
+                </p>
+            </div>
 
-                <div class="card">
-                    <div class="card-icon">01</div>
-                    <h3>Context</h3>
-                    <p>
-                        PickleAI can understand the context
-                        behind your conversations.
-                    </p>
-                </div>
-
-                <div class="card">
-                    <div class="card-icon">02</div>
-                    <h3>Memory</h3>
-                    <p>
-                        Important information can stay available
-                        when you return later.
-                    </p>
-                </div>
-
-                <div class="card">
-                    <div class="card-icon">03</div>
-                    <h3>Continuity</h3>
-                    <p>
-                        Pick up where you left off instead of
-                        starting from zero.
-                    </p>
-                </div>
-
+            <div class="card reveal">
+                <div class="card-num">03</div>
+                <h3>Continuity</h3>
+                <p>
+                    Pick up where you left off instead of rebuilding
+                    the entire context from scratch.
+                </p>
             </div>
 
         </div>
-
     </div>
-
 </section>
 
+<section class="section" id="action">
+    <div class="inner feature">
 
-<!-- FEATURE 2 -->
+        <div class="feature-info reveal">
+            <div class="feature-number">03 — ACTION</div>
 
-<section class="feature-section light">
+            <div class="feature-title">
+                More than<br>
+                conversation.
+            </div>
 
-    <div class="feature-sticky">
+            <p class="feature-text">
+                An assistant should help you get things done.
+                PickleAI connects intelligence with useful actions
+                on your computer.
+            </p>
+        </div>
 
-        <div class="feature-stage">
+        <div class="cards">
 
-            <div class="feature-copy">
-
-                <div class="feature-number">
-                    02 — ACTION
-                </div>
-
-                <h2>
-                    More than<br>
-                    conversation.
-                </h2>
-
+            <div class="card reveal">
+                <div class="card-num">01</div>
+                <h3>PC control</h3>
                 <p>
-                    An assistant should help you get things done
+                    PickleAI can interact with supported parts of
+                    your Windows environment instead of only
+                    responding with text.
+                </p>
+            </div>
+
+            <div class="card reveal">
+                <div class="card-num">02</div>
+                <h3>Automation</h3>
+                <p>
+                    Useful actions can connect together so the
+                    assistant can help complete tasks rather than
+                    simply describe them.
+                </p>
+            </div>
+
+            <div class="card reveal">
+                <div class="card-num">03</div>
+                <h3>Tools</h3>
+                <p>
+                    PickleAI is designed to work with tools and
+                    capabilities that extend beyond a normal
+                    chat interface.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="section light" id="local">
+    <div class="inner">
+
+        <div class="reveal">
+            <div class="kicker">04 — LOCAL BY DESIGN</div>
+
+            <div class="big">
+                Your assistant.<br>
+                <span>On your computer.</span>
+            </div>
+
+            <p class="copy">
+                PickleAI is designed with local AI in mind. Instead of
+                making the assistant depend on a remote service for
+                everything, the system can work with local AI through
+                Ollama-supported models.
+            </p>
+        </div>
+
+        <div class="pipeline">
+
+            <div class="pipeline-item reveal">
+                <div class="pipeline-number">01</div>
+                <h3>You</h3>
+                <p>
+                    Ask something, start a task, or tell PickleAI
+                    what you want to accomplish.
+                </p>
+            </div>
+
+            <div class="pipeline-item reveal">
+                <div class="pipeline-number">02</div>
+                <h3>AI</h3>
+                <p>
+                    The local AI layer interprets the request
+                    and determines what should happen next.
+                </p>
+            </div>
+
+            <div class="pipeline-item reveal">
+                <div class="pipeline-number">03</div>
+                <h3>Tools</h3>
+                <p>
+                    Supported tools and computer actions can
+                    turn the response into something useful.
+                </p>
+            </div>
+
+            <div class="pipeline-item reveal">
+                <div class="pipeline-number">04</div>
+                <h3>Result</h3>
+                <p>
+                    You get an assistant that can help accomplish
+                    the task instead of just talking about it.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="section" id="privacy">
+    <div class="inner">
+
+        <div class="reveal">
+            <div class="kicker">05 — CONTROL</div>
+
+            <div class="big">
+                Powerful AI<br>
+                <span>without giving up control.</span>
+            </div>
+
+            <p class="copy">
+                PickleAI is being built around user control: local
+                operation, persistent memory, configurable tools,
+                and a desktop experience that belongs to the person
+                using it.
+            </p>
+        </div>
+
+        <div class="privacy-grid">
+
+            <div class="privacy-card reveal">
+                <div class="card-num">01</div>
+                <h3>Local-first</h3>
+                <p>
+                    Work with local AI models and local software
+                    components where possible.
+                </p>
+            </div>
+
+            <div class="privacy-card reveal">
+                <div class="card-num">02</div>
+                <h3>Your computer</h3>
+                <p>
+                    PickleAI is designed as a desktop assistant
+                    that can interact with the environment around it.
+                </p>
+            </div>
+
+            <div class="privacy-card reveal">
+                <div class="card-num">03</div>
+                <h3>Your assistant</h3>
+                <p>
+                    The goal is an assistant that becomes useful
+                    to you rather than a generic chatbot for everyone.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="inner feature">
+
+        <div class="feature-info reveal">
+            <div class="feature-number">06 — CONTINUITY</div>
+
+            <div class="feature-title">
+                Stop starting<br>
+                from zero.
+            </div>
+
+            <p class="feature-text">
+                Conversations can become part of a longer relationship
+                with your assistant. PickleAI is built to make returning
+                to your work feel natural.
+            </p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card reveal">
+                <div class="card-num">01</div>
+                <h3>Projects</h3>
+                <p>
+                    Keep useful context around the things you're
+                    actually working on.
+                </p>
+            </div>
+
+            <div class="card reveal">
+                <div class="card-num">02</div>
+                <h3>Preferences</h3>
+                <p>
+                    An assistant becomes more useful when it can
+                    understand how you prefer to work.
+                </p>
+            </div>
+
+            <div class="card reveal">
+                <div class="card-num">03</div>
+                <h3>History</h3>
+                <p>
+                    Previous conversations can provide continuity
+                    for future interactions.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <h2 class="reveal">
+        An AI that<br>
+        works with you.
+    </h2>
+
+    <p class="reveal">
+        PickleAI is being built to make personal computing
+        more intelligent, more capable, and more yours.
+    </p>
+
+    <div class="buttons reveal">
+        <a class="button primary"
+           href="https://github.com/PickleForge-Labs/PickleAI">
+            Explore the project
+        </a>
+
+        <a class="button secondary"
+           href="https://pickleforge-labs.github.io/">
+            Pickle Systems
+        </a>
+    </div>
+</section>
+
+<footer>
+    <div><strong>PickleAI</strong> — A Pickle Systems project.</div>
+    <div>
+        <a href="https://github.com/PickleForge-Labs/PickleAI">
+            GitHub
+        </a>
+    </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver(
+    entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    },
+    { threshold: 0.12 }
+);
+
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
