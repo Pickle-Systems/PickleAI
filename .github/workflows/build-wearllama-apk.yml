@@ -1,0 +1,59 @@
+name: Build WearLlama APK
+
+on:
+  push:
+    branches:
+      - build-wearllama-apk
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout build workspace
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android build dependencies
+        run: |
+          sdkmanager --install \
+            'platform-tools' \
+            'platforms;android-35' \
+            'build-tools;35.0.0' \
+            'cmake;3.22.1' \
+            'ndk;27.2.12479018'
+
+      - name: Clone WearLlama with llama.cpp submodule
+        run: |
+          git clone --recursive https://github.com/Ni-co-la-s/WearLlama.git WearLlama
+          cd WearLlama
+          git submodule status
+
+      - name: Build WearLlama debug APK
+        working-directory: WearLlama
+        run: |
+          chmod +x gradlew
+          ./gradlew :app:assembleDebug --stacktrace --no-daemon
+
+      - name: Verify APK
+        working-directory: WearLlama
+        run: |
+          ls -lh app/build/outputs/apk/debug/app-debug.apk
+          file app/build/outputs/apk/debug/app-debug.apk
+          sha256sum app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: WearLlama-Galaxy-Watch4-debug
+          path: WearLlama/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 7
