@@ -54,7 +54,7 @@ pub fn main() !void {
 
     std.debug.print("PickleAI Zig Core ready. Type 'help'.\n", .{});
     while (true) {
-        const line = stdin.readUntilDelimiterOrEof(&buffer, '\n') orelse break;
+        const line = (try stdin.readUntilDelimiterOrEof(&buffer, '\n')) orelse break;
         if (!handleCommand(line)) break;
     }
 }
