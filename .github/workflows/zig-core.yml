@@ -17,3 +17,12 @@ jobs:
       - name: Build Zig core
         working-directory: zig
         run: zig build -Doptimize=ReleaseSafe
+      - name: Smoke test agent protocol
+        working-directory: zig
+        shell: bash
+        run: |
+          printf 'status\ntask Open Notepad\nverify task-001\nquit\n' | ./zig-out/bin/pickleai-core > smoke-output.txt
+          grep -q '"type":"status"' smoke-output.txt
+          grep -q '"type":"plan"' smoke-output.txt
+          grep -q '"type":"task"' smoke-output.txt
+          grep -q '"type":"verification"' smoke-output.txt
