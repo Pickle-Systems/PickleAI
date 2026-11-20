@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pickle-systems.github.io/PickleAI/sitemap.xml
