@@ -11,6 +11,9 @@ that actually lives on your computer.
 
 **Powered by Ollama + local AI models.**
 
+**Official website:** https://pickle-systems.github.io/PickleAI/  
+**Developer:** [Pickle Systems](https://pickle-systems.github.io/)
+
 No required cloud AI API.
 No required subscription.
 Your assistant runs on your machine.
